@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:sws="http://www.springframework.org/schema/web-services"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+	<!-- annotation support -->
+	<context:annotation-config />
+ 
+ 	<!-- load properties file for externalization -->
+	<context:property-placeholder location="classpath:db.properties,classpath:user-app-${ENV_NAME}.properties" ignore-unresolvable="true"/>
+	
+	<!--  component scan for autowired of spring beans -->
+	<context:component-scan base-package="com.capgemini.user">
+		<context:exclude-filter type="regex" expression="com\.capgemini\.user\.web\..*" />
+		<!-- <context:exclude-filter type="regex" expression="com\.capgemini\.user\.dao\.repositories\..*" />
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository" /> 
+    	<context:exclude-filter type="aspectj" expression="com.capgemini.user.logging.aop.AuditLoggerAspect" /> -->
+	</context:component-scan>
+	
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	
+	<bean id="exceptionHandlerAspect" class="com.capgemini.user.logging.aop.ExceptionHandlerAspect" factory-method="aspectOf"/>
+	
+	<bean id="executorService" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+	    <property name="corePoolSize" value="${concurrency.default.min.poolsize}" />
+	    <property name="maxPoolSize" value="${concurrency.default.max.poolsize}" />
+	    <property name="queueCapacity" value="${concurrency.default.max.queuedTask}" />
+	</bean>
+	
+	<!-- spring-data JPA repositories setup  -->
+	<jpa:repositories base-package="com.capgemini.user.dao.repositories" />
+	
+	<!-- JPA entity manager factory -->	
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	  <property name="persistenceUnitName" value="${jpa.persistent.unit.name:userPersistentUnit}" />
+	  <property name="dataSource" ref="dataSource" />
+	  <property name="jpaVendorAdapter">
+	   <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+	    <property name="showSql" value="${hibernate.showsql}" />
+	    <property name="databasePlatform" value="${hibernate.dilect.type}" />
+	    <!-- <property name="generateDdl" value="true" /> -->
+	   </bean>
+	  </property>
+	 </bean>
+	 
+	 <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+	  <property name="entityManagerFactory" ref="entityManagerFactory" />
+	  <property name="dataSource" ref="dataSource" />
+	 </bean>
+	
+	<bean id="simpleJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" lazy-init="true" destroy-method="close">
+		<property name="driverClass" value="${db.jdbc.driverClassName}"/>  	
+ 		<property name="jdbcUrl" value="${db.jdbc.url}"/>
+		<property name="user" value="${db.username}"/>  
+     	<property name="password" value="${db.password}"/>  
+     	<property name="maxPoolSize" value="${db.pool.maxconnectionsize}"/>
+        <property name="minPoolSize" value="${db.pool.minconnectionsize}"/>
+   	</bean>
+   
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${db.jdbc.driverClassName}" />
+		<property name="url" value="${db.jdbc.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+		<property name="maxPoolSize" value="${db.pool.maxconnectionsize}"/> 
+		<property name="minPoolSize" value="${db.pool.minconnectionsize}"/> 
+	</bean> -->
+	
+	<!-- <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close" lazy-init="true"> 
+		<property name="driverClassName" value="${db.jdbc.driverClassName}" /> 
+		<property name="url" value="${db.jdbc.url}" /> 
+		<property name="username" value="${db.username}" /> 
+		<property name="password" value="${db.password}" />
+		<property name="maxActive" value="${db.pool.maxconnectionsize}" />  
+		<property name="initialSize" value="${db.pool.minconnectionsize}" /> 
+		<property name="jmxEnabled" value="true" />
+		<property name="testOnBorrow" value="true" /> 
+		<property name="fairQueue" value="true" />
+	</bean> -->
+
+	<sws:annotation-driven/>
+	
+	<bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+        <property name="soapVersion">
+            <util:constant static-field="org.springframework.ws.soap.SoapVersion.SOAP_12"/>
+        </property>
+    </bean>
+    
+    <bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+    	<property name="contextPaths">
+    		<list>
+    			<value>com.capgemini.user.service.dto.weather</value>
+    			<value>com.capgemini.user.service.dto</value>
+    		</list>
+    	</property>
+    </bean>
+	
+	<bean id="globalWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <constructor-arg ref="messageFactory"/>
+        <property name="marshaller" ref="marshaller"/>
+        <property name="unmarshaller" ref="marshaller"/>
+        <property name="messageSender">
+	        <bean class="org.springframework.ws.transport.http.HttpComponentsMessageSender">
+	        </bean>
+   	 	</property>
+        <property name="defaultUri" value="${global.weather.service.url}"/>
+    </bean>
+    
+    
+</beans>

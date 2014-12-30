@@ -1,0 +1,342 @@
+---- AspectJ Properties ---
+AspectJ Compiler 1.8.4 built on Thursday Nov 6, 2014 at 20:19:21 GMT
+---- Dump Properties ---
+Dump file: ajcore.20141217.011435.762.txt
+Dump reason: java.lang.ClassCastException
+Dump on exception: true
+Dump at exit condition: abort
+---- Exception Information ---
+java.lang.ClassCastException: org.aspectj.org.eclipse.jdt.internal.compiler.lookup.ParameterizedTypeBinding cannot be cast to org.aspectj.org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding
+	at org.aspectj.ajdt.internal.compiler.lookup.EclipseResolvedMember.getTypeDeclaration(EclipseResolvedMember.java:410)
+	at org.aspectj.ajdt.internal.compiler.lookup.EclipseResolvedMember.isTypeDeclarationAvailable(EclipseResolvedMember.java:399)
+	at org.aspectj.ajdt.internal.compiler.lookup.EclipseResolvedMember.getAnnotationTypes(EclipseResolvedMember.java:202)
+	at org.aspectj.ajdt.internal.compiler.lookup.EclipseResolvedMember.hasAnnotation(EclipseResolvedMember.java:79)
+	at org.aspectj.weaver.JoinPointSignature.hasAnnotation(JoinPointSignature.java:79)
+	at org.aspectj.weaver.patterns.ExactAnnotationTypePattern.matches(ExactAnnotationTypePattern.java:109)
+	at org.aspectj.weaver.patterns.ExactAnnotationTypePattern.matches(ExactAnnotationTypePattern.java:96)
+	at org.aspectj.weaver.patterns.SignaturePattern.matchesAnnotations(SignaturePattern.java:713)
+	at org.aspectj.weaver.patterns.SignaturePattern.matchesExactly(SignaturePattern.java:372)
+	at org.aspectj.weaver.patterns.SignaturePattern.matches(SignaturePattern.java:320)
+	at org.aspectj.weaver.patterns.KindedPointcut.matchInternal(KindedPointcut.java:197)
+	at org.aspectj.weaver.patterns.Pointcut.match(Pointcut.java:137)
+	at org.aspectj.weaver.patterns.NotPointcut.matchInternal(NotPointcut.java:56)
+	at org.aspectj.weaver.patterns.Pointcut.match(Pointcut.java:137)
+	at org.aspectj.weaver.patterns.AndPointcut.matchInternal(AndPointcut.java:60)
+	at org.aspectj.weaver.patterns.Pointcut.match(Pointcut.java:137)
+	at org.aspectj.weaver.patterns.AndPointcut.matchInternal(AndPointcut.java:60)
+	at org.aspectj.weaver.patterns.Pointcut.match(Pointcut.java:137)
+	at org.aspectj.weaver.patterns.AndPointcut.matchInternal(AndPointcut.java:60)
+	at org.aspectj.weaver.patterns.Pointcut.match(Pointcut.java:137)
+	at org.aspectj.ajdt.internal.compiler.problem.AjProblemReporter.unhandledException(AjProblemReporter.java:117)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.flow.FlowContext.checkExceptionHandlers(FlowContext.java:491)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.ast.MessageSend.analyseCode(MessageSend.java:194)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.ast.MessageSend.analyseCode(MessageSend.java:178)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.ast.Block.analyseCode(Block.java:48)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.ast.ForeachStatement.analyseCode(ForeachStatement.java:125)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.analyseCode(MethodDeclaration.java:125)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.internalAnalyseCode(TypeDeclaration.java:766)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.analyseCode(TypeDeclaration.java:262)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.analyseCode(CompilationUnitDeclaration.java:118)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:802)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:480)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:420)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performCompilation(AjBuildManager.java:1036)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performBuild(AjBuildManager.java:272)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.batchBuild(AjBuildManager.java:185)
+	at org.aspectj.ajdt.ajc.AjdtCommand.doCommand(AjdtCommand.java:112)
+	at org.aspectj.ajdt.ajc.AjdtCommand.runCommand(AjdtCommand.java:60)
+	at org.aspectj.tools.ajc.Main.run(Main.java:371)
+	at org.aspectj.tools.ajc.Main.runMain(Main.java:248)
+	at org.codehaus.mojo.aspectj.AbstractAjcCompiler.execute(AbstractAjcCompiler.java:524)
+	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:106)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:208)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:84)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:59)
+	at org.apache.maven.lifecycle.internal.LifecycleStarter.singleThreadedBuild(LifecycleStarter.java:183)
+	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:161)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:318)
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:153)
+	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:555)
+	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:214)
+	at org.apache.maven.cli.MavenCli.main(MavenCli.java:158)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:290)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:230)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:414)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:357)
+---- System Properties ---
+java.runtime.name=Java(TM) SE Runtime Environment
+sun.boot.library.path=C:\Program Files\Java\jdk1.7.0_67\jre\bin
+java.vm.version=24.65-b04
+java.vm.vendor=Oracle Corporation
+java.vendor.url=http://java.oracle.com/
+guice.disable.misplaced.annotation.check=true
+path.separator=;
+java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+file.encoding.pkg=sun.io
+user.country=US
+user.script=
+sun.java.launcher=SUN_STANDARD
+sun.os.patch.level=Service Pack 1
+java.vm.specification.name=Java Virtual Machine Specification
+user.dir=D:\Non-Backup\workplace\workspace\user
+java.runtime.version=1.7.0_67-b01
+java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment
+java.endorsed.dirs=C:\Program Files\Java\jdk1.7.0_67\jre\lib\endorsed
+os.arch=amd64
+java.io.tmpdir=C:\Users\ajidas\AppData\Local\Temp\
+line.separator=
+
+java.vm.specification.vendor=Oracle Corporation
+user.variant=
+os.name=Windows 7
+classworlds.conf=D:\Non-Backup\workplace\tools\apache-maven-3.1.0\bin\..\bin\m2.conf
+sun.jnu.encoding=Cp1252
+java.library.path=C:\Program Files\Java\jdk1.7.0_67\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;%JAVA_HOME\bin;D:\Non-Backup\workplace\tools\apache-maven-3.1.0\bin;C:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\MySQL\MySQL Utilities 1.3.4\;C:\Users\ajidas\AppData\Local\GitHub\PortableGit_015aa71ef18c047ce8509ffb2f9e4bb0e3e73f13\bin;C:\Program Files (x86)\Git\cmd;.
+java.specification.name=Java Platform API Specification
+java.class.version=51.0
+sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+os.version=6.1
+user.home=D:\Users\ajidas
+user.timezone=GMT-05:00
+java.awt.printerjob=sun.awt.windows.WPrinterJob
+file.encoding=Cp1252
+java.specification.version=1.7
+java.class.path=D:\Non-Backup\workplace\tools\apache-maven-3.1.0\bin\..\boot\plexus-classworlds-2.4.2.jar
+user.name=ajidas
+org.slf4j.simpleLogger.defaultLogLevel=info
+java.vm.specification.version=1.7
+sun.java.command=org.codehaus.plexus.classworlds.launcher.Launcher clean install
+java.home=C:\Program Files\Java\jdk1.7.0_67\jre
+sun.arch.data.model=64
+user.language=en
+java.specification.vendor=Oracle Corporation
+awt.toolkit=sun.awt.windows.WToolkit
+java.vm.info=mixed mode
+java.version=1.7.0_67
+java.ext.dirs=C:\Program Files\Java\jdk1.7.0_67\jre\lib\ext;C:\Windows\Sun\Java\lib\ext
+sun.boot.class.path=C:\Program Files\Java\jdk1.7.0_67\jre\lib\resources.jar;C:\Program Files\Java\jdk1.7.0_67\jre\lib\rt.jar;C:\Program Files\Java\jdk1.7.0_67\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.7.0_67\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.7.0_67\jre\lib\jce.jar;C:\Program Files\Java\jdk1.7.0_67\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.7.0_67\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.7.0_67\jre\classes
+java.vendor=Oracle Corporation
+maven.home=D:\Non-Backup\workplace\tools\apache-maven-3.1.0\bin\..
+file.separator=\
+java.vendor.url.bug=http://bugreport.sun.com/bugreport/
+sun.io.unicode.encoding=UnicodeLittle
+sun.cpu.endian=little
+sun.desktop=windows
+sun.cpu.isalist=amd64
+---- Command Line ---
+-XnoInline
+-1.7
+-encoding
+UTF-8
+-showWeaveInfo
+-source
+1.7
+-target
+1.7
+-verbose
+-classpath
+D:\Non-Backup\workplace\workspace\user\user-aspects\target\user-aspects.jar;D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-aspects\4.0.0.RELEASE\spring-aspects-4.0.0.RELEASE.jar;D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-orm\4.0.0.RELEASE\spring-orm-4.0.0.RELEASE.jar;D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-jdbc\4.0.0.RELEASE\spring-jdbc-4.0.0.RELEASE.jar;D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-tx\4.0.0.RELEASE\spring-tx-4.0.0.RELEASE.jar;D:\Non-Backup\workplace\mavenrepo\org\springframework\data\spring-data-jpa\1.5.0.RELEASE\spring-data-jpa-1.5.0.RELEASE.jar;D:\Non-Backup\workplace\mavenrepo\org\springframework\data\spring-data-commons\1.7.0.RELEASE\spring-data-commons-1.7.0.RELEASE.jar;D:\Non-Backup\workplace\mavenrepo\org\aspectj\aspectjrt\1.8.4\aspectjrt-1.8.4.jar;D:\Non-Backup\workplace\mavenrepo\org\aspectj\aspectjweaver\1.8.4\aspectjweaver-1.8.4.jar;D:\Non-Backup\workplace\mavenrepo\org\aspectj\aspectjtools\1.8.4\aspectjtools-1.8.4.jar;D:\Non-Backup\workplace\mavenrepo\cglib\cglib\2.2.2\cglib-2.2.2.jar;D:\Non-Backup\workplace\mavenrepo\cglib\cglib-nodep\2.2.2\cglib-nodep-2.2.2.jar;D:\Non-Backup\workplace\mavenrepo\c3p0\c3p0\0.9.1.2\c3p0-0.9.1.2.jar;D:\Non-Backup\workplace\mavenrepo\org\hibernate\javax\persistence\hibernate-jpa-2.1-api\1.0.0.Final\hibernate-jpa-2.1-api-1.0.0.Final.jar;D:\Non-Backup\workplace\mavenrepo\org\hibernate\hibernate-core\4.3.0.Final\hibernate-core-4.3.0.Final.jar;D:\Non-Backup\workplace\mavenrepo\org\hibernate\hibernate-validator\4.3.0.Final\hibernate-validator-4.3.0.Final.jar;D:\Non-Backup\workplace\mavenrepo\org\hibernate\hibernate-entitymanager\4.3.0.Final\hibernate-entitymanager-4.3.0.Final.jar;D:\Non-Backup\workplace\mavenrepo\com\mysema\querydsl\querydsl-sql\2.9.0\querydsl-sql-2.9.0.jar;D:\Non-Backup\workplace\mavenrepo\org\hsqldb\hsqldb\2.3.2\hsqldb-2.3.2.jar;D:\Non-Backup\workplace\mavenrepo\commons-dbcp\commons-dbcp\1.4\commons-dbcp-1.4.jar;D:\Non-Backup\workplace\mavenrepo\com\fasterxml\jackson\core\jackson-core\2.2.3\jackson-core-2.2.3.jar;D:\Non-Backup\workplace\mavenrepo\com\fasterxml\jackson\core\jackson-annotations\2.2.3\jackson-annotations-2.2.3.jar;D:\Non-Backup\workplace\mavenrepo\com\fasterxml\jackson\core\jackson-databind\2.2.3\jackson-databind-2.2.3.jar;D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-core\4.0.0.RELEASE\spring-core-4.0.0.RELEASE.jar;D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-beans\4.0.0.RELEASE\spring-beans-4.0.0.RELEASE.jar;D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-context\4.0.0.RELEASE\spring-context-4.0.0.RELEASE.jar;D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-aop\4.0.0.RELEASE\spring-aop-4.0.0.RELEASE.jar;D:\Non-Backup\workplace\mavenrepo\org\slf4j\slf4j-api\1.7.1\slf4j-api-1.7.1.jar;D:\Non-Backup\workplace\mavenrepo\org\slf4j\jcl-over-slf4j\1.7.1\jcl-over-slf4j-1.7.1.jar;D:\Non-Backup\workplace\mavenrepo\ch\qos\logback\logback-core\1.0.6\logback-core-1.0.6.jar;D:\Non-Backup\workplace\mavenrepo\ch\qos\logback\logback-classic\1.0.6\logback-classic-1.0.6.jar;D:\Non-Backup\workplace\mavenrepo\ch\qos\logback\logback-access\1.0.6\logback-access-1.0.6.jar;D:\Non-Backup\workplace\mavenrepo\commons-io\commons-io\2.3\commons-io-2.3.jar;D:\Non-Backup\workplace\mavenrepo\junit\junit-dep\4.10\junit-dep-4.10.jar;D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-test\4.0.0.RELEASE\spring-test-4.0.0.RELEASE.jar;D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-context-support\4.0.0.RELEASE\spring-context-support-4.0.0.RELEASE.jar;D:\Non-Backup\workplace\mavenrepo\aopalliance\aopalliance\1.0\aopalliance-1.0.jar;D:\Non-Backup\workplace\mavenrepo\asm\asm\3.3.1\asm-3.3.1.jar;D:\Non-Backup\workplace\mavenrepo\org\jboss\logging\jboss-logging\3.1.3.GA\jboss-logging-3.1.3.GA.jar;D:\Non-Backup\workplace\mavenrepo\org\jboss\logging\jboss-logging-annotations\1.2.0.Beta1\jboss-logging-annotations-1.2.0.Beta1.jar;D:\Non-Backup\workplace\mavenrepo\org\jboss\spec\javax\transaction\jboss-transaction-api_1.2_spec\1.0.0.Final\jboss-transaction-api_1.2_spec-1.0.0.Final.jar;D:\Non-Backup\workplace\mavenrepo\dom4j\dom4j\1.6.1\dom4j-1.6.1.jar;D:\Non-Backup\workplace\mavenrepo\xml-apis\xml-apis\1.0.b2\xml-apis-1.0.b2.jar;D:\Non-Backup\workplace\mavenrepo\org\hibernate\common\hibernate-commons-annotations\4.0.4.Final\hibernate-commons-annotations-4.0.4.Final.jar;D:\Non-Backup\workplace\mavenrepo\org\javassist\javassist\3.18.1-GA\javassist-3.18.1-GA.jar;D:\Non-Backup\workplace\mavenrepo\antlr\antlr\2.7.7\antlr-2.7.7.jar;D:\Non-Backup\workplace\mavenrepo\org\jboss\jandex\1.1.0.Final\jandex-1.1.0.Final.jar;D:\Non-Backup\workplace\mavenrepo\javax\validation\validation-api\1.0.0.GA\validation-api-1.0.0.GA.jar;D:\Non-Backup\workplace\mavenrepo\com\mysema\querydsl\querydsl-core\2.9.0\querydsl-core-2.9.0.jar;D:\Non-Backup\workplace\mavenrepo\com\google\guava\guava\11.0.2\guava-11.0.2.jar;D:\Non-Backup\workplace\mavenrepo\com\google\code\findbugs\jsr305\1.3.9\jsr305-1.3.9.jar;D:\Non-Backup\workplace\mavenrepo\com\mysema\commons\mysema-commons-lang\0.2.4\mysema-commons-lang-0.2.4.jar;D:\Non-Backup\workplace\mavenrepo\joda-time\joda-time\1.6\joda-time-1.6.jar;D:\Non-Backup\workplace\mavenrepo\javax\inject\javax.inject\1\javax.inject-1.jar;D:\Non-Backup\workplace\mavenrepo\commons-pool\commons-pool\1.5.4\commons-pool-1.5.4.jar;D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-expression\4.0.0.RELEASE\spring-expression-4.0.0.RELEASE.jar;D:\Non-Backup\workplace\workspace\user\user-core\target\classes
+-aspectpath
+D:\Non-Backup\workplace\workspace\user\user-aspects\target\user-aspects.jar
+-d
+D:\Non-Backup\workplace\workspace\user\user-core\target\classes
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\aspect\SoftenAspect.aj
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\concurrency\ConcurrencyProcessor.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\concurrency\core\CallableCommand.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\concurrency\core\Command.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\concurrency\ExecutorConcurrencyProcessor.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\dao\entity\User.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\dao\repositories\impl\UserRepositoryImpl.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\dao\repositories\UserRepository.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\dao\repositories\UserRepositoryCustom.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\aop\ExceptionHandlerAspect.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\core\AppContextSingleton.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\core\AsynLogPublisher.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\core\Auditable.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\core\DefaultLogEventStringConverter.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\core\LogEventStringConverter.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\core\LogPublisher.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\core\Slf4jUserLogger.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\core\SyncLogPublisher.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\core\TraceLogger.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\core\UserLogger.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\event\AuditCallLogEvent.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\event\AuditReturnLogEvent.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\event\CallLogEvent.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\event\HttpCallLogEvent.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\event\HttpReturnLogEvent.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\event\LogEvent.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\event\LogEventTypes.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\event\ReturnLogEvent.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\event\SimpleLogEvent.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\service\dto\User.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\service\impl\HelloDummy.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\service\impl\UserServiceImpl.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\service\UserService.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\service\util\MetadataHeaderThreadLocalHolder.java
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\service\util\UserMapper.java
+---- Full Classpath ---
+C:\Program Files\Java\jdk1.7.0_67\jre\lib\resources.jar(2454067 bytes)
+C:\Program Files\Java\jdk1.7.0_67\jre\lib\rt.jar(60054346 bytes)
+C:\Program Files\Java\jdk1.7.0_67\jre\lib\sunrsasign.jar(missing)
+C:\Program Files\Java\jdk1.7.0_67\jre\lib\jsse.jar(580624 bytes)
+C:\Program Files\Java\jdk1.7.0_67\jre\lib\jce.jar(109504 bytes)
+C:\Program Files\Java\jdk1.7.0_67\jre\lib\charsets.jar(3652116 bytes)
+C:\Program Files\Java\jdk1.7.0_67\jre\lib\jfr.jar(530985 bytes)
+C:\Program Files\Java\jdk1.7.0_67\jre\classes(missing)
+D:\Non-Backup\workplace\workspace\user\user-aspects\target\user-aspects.jar(6102 bytes)
+C:\Program Files\Java\jdk1.7.0_67\jre\lib\ext\access-bridge-64.jar(225282 bytes)
+C:\Program Files\Java\jdk1.7.0_67\jre\lib\ext\dnsns.jar(8934 bytes)
+C:\Program Files\Java\jdk1.7.0_67\jre\lib\ext\jaccess.jar(43595 bytes)
+C:\Program Files\Java\jdk1.7.0_67\jre\lib\ext\localedata.jar(1024968 bytes)
+C:\Program Files\Java\jdk1.7.0_67\jre\lib\ext\sunec.jar(15930 bytes)
+C:\Program Files\Java\jdk1.7.0_67\jre\lib\ext\sunjce_provider.jar(198101 bytes)
+C:\Program Files\Java\jdk1.7.0_67\jre\lib\ext\sunmscapi.jar(30695 bytes)
+C:\Program Files\Java\jdk1.7.0_67\jre\lib\ext\zipfs.jar(68761 bytes)
+D:\Non-Backup\workplace\workspace\user\user-aspects\target\user-aspects.jar(6102 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-aspects\4.0.0.RELEASE\spring-aspects-4.0.0.RELEASE.jar(51584 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-orm\4.0.0.RELEASE\spring-orm-4.0.0.RELEASE.jar(316834 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-jdbc\4.0.0.RELEASE\spring-jdbc-4.0.0.RELEASE.jar(419872 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-tx\4.0.0.RELEASE\spring-tx-4.0.0.RELEASE.jar(248001 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\springframework\data\spring-data-jpa\1.5.0.RELEASE\spring-data-jpa-1.5.0.RELEASE.jar(185543 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\springframework\data\spring-data-commons\1.7.0.RELEASE\spring-data-commons-1.7.0.RELEASE.jar(410845 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\aspectj\aspectjrt\1.8.4\aspectjrt-1.8.4.jar(117512 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\aspectj\aspectjweaver\1.8.4\aspectjweaver-1.8.4.jar(1862339 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\aspectj\aspectjtools\1.8.4\aspectjtools-1.8.4.jar(11161980 bytes)
+D:\Non-Backup\workplace\mavenrepo\cglib\cglib\2.2.2\cglib-2.2.2.jar(287192 bytes)
+D:\Non-Backup\workplace\mavenrepo\cglib\cglib-nodep\2.2.2\cglib-nodep-2.2.2.jar(326917 bytes)
+D:\Non-Backup\workplace\mavenrepo\c3p0\c3p0\0.9.1.2\c3p0-0.9.1.2.jar(610790 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\hibernate\javax\persistence\hibernate-jpa-2.1-api\1.0.0.Final\hibernate-jpa-2.1-api-1.0.0.Final.jar(113371 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\hibernate\hibernate-core\4.3.0.Final\hibernate-core-4.3.0.Final.jar(5208917 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\hibernate\hibernate-validator\4.3.0.Final\hibernate-validator-4.3.0.Final.jar(476575 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\hibernate\hibernate-entitymanager\4.3.0.Final\hibernate-entitymanager-4.3.0.Final.jar(645015 bytes)
+D:\Non-Backup\workplace\mavenrepo\com\mysema\querydsl\querydsl-sql\2.9.0\querydsl-sql-2.9.0.jar(175182 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\hsqldb\hsqldb\2.3.2\hsqldb-2.3.2.jar(1473091 bytes)
+D:\Non-Backup\workplace\mavenrepo\commons-dbcp\commons-dbcp\1.4\commons-dbcp-1.4.jar(160519 bytes)
+D:\Non-Backup\workplace\mavenrepo\com\fasterxml\jackson\core\jackson-core\2.2.3\jackson-core-2.2.3.jar(192699 bytes)
+D:\Non-Backup\workplace\mavenrepo\com\fasterxml\jackson\core\jackson-annotations\2.2.3\jackson-annotations-2.2.3.jar(33483 bytes)
+D:\Non-Backup\workplace\mavenrepo\com\fasterxml\jackson\core\jackson-databind\2.2.3\jackson-databind-2.2.3.jar(865838 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-core\4.0.0.RELEASE\spring-core-4.0.0.RELEASE.jar(955328 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-beans\4.0.0.RELEASE\spring-beans-4.0.0.RELEASE.jar(669267 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-context\4.0.0.RELEASE\spring-context-4.0.0.RELEASE.jar(950606 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-aop\4.0.0.RELEASE\spring-aop-4.0.0.RELEASE.jar(351240 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\slf4j\slf4j-api\1.7.1\slf4j-api-1.7.1.jar(26065 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\slf4j\jcl-over-slf4j\1.7.1\jcl-over-slf4j-1.7.1.jar(16458 bytes)
+D:\Non-Backup\workplace\mavenrepo\ch\qos\logback\logback-core\1.0.6\logback-core-1.0.6.jar(349706 bytes)
+D:\Non-Backup\workplace\mavenrepo\ch\qos\logback\logback-classic\1.0.6\logback-classic-1.0.6.jar(251784 bytes)
+D:\Non-Backup\workplace\mavenrepo\ch\qos\logback\logback-access\1.0.6\logback-access-1.0.6.jar(89638 bytes)
+D:\Non-Backup\workplace\mavenrepo\commons-io\commons-io\2.3\commons-io-2.3.jar(182650 bytes)
+D:\Non-Backup\workplace\mavenrepo\junit\junit-dep\4.10\junit-dep-4.10.jar(234088 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-test\4.0.0.RELEASE\spring-test-4.0.0.RELEASE.jar(441609 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-context-support\4.0.0.RELEASE\spring-context-support-4.0.0.RELEASE.jar(134122 bytes)
+D:\Non-Backup\workplace\mavenrepo\aopalliance\aopalliance\1.0\aopalliance-1.0.jar(4467 bytes)
+D:\Non-Backup\workplace\mavenrepo\asm\asm\3.3.1\asm-3.3.1.jar(43581 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\jboss\logging\jboss-logging\3.1.3.GA\jboss-logging-3.1.3.GA.jar(57183 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\jboss\logging\jboss-logging-annotations\1.2.0.Beta1\jboss-logging-annotations-1.2.0.Beta1.jar(11558 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\jboss\spec\javax\transaction\jboss-transaction-api_1.2_spec\1.0.0.Final\jboss-transaction-api_1.2_spec-1.0.0.Final.jar(27717 bytes)
+D:\Non-Backup\workplace\mavenrepo\dom4j\dom4j\1.6.1\dom4j-1.6.1.jar(313898 bytes)
+D:\Non-Backup\workplace\mavenrepo\xml-apis\xml-apis\1.0.b2\xml-apis-1.0.b2.jar(109318 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\hibernate\common\hibernate-commons-annotations\4.0.4.Final\hibernate-commons-annotations-4.0.4.Final.jar(75311 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\javassist\javassist\3.18.1-GA\javassist-3.18.1-GA.jar(714194 bytes)
+D:\Non-Backup\workplace\mavenrepo\antlr\antlr\2.7.7\antlr-2.7.7.jar(445288 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\jboss\jandex\1.1.0.Final\jandex-1.1.0.Final.jar(76551 bytes)
+D:\Non-Backup\workplace\mavenrepo\javax\validation\validation-api\1.0.0.GA\validation-api-1.0.0.GA.jar(47433 bytes)
+D:\Non-Backup\workplace\mavenrepo\com\mysema\querydsl\querydsl-core\2.9.0\querydsl-core-2.9.0.jar(376114 bytes)
+D:\Non-Backup\workplace\mavenrepo\com\google\guava\guava\11.0.2\guava-11.0.2.jar(1648200 bytes)
+D:\Non-Backup\workplace\mavenrepo\com\google\code\findbugs\jsr305\1.3.9\jsr305-1.3.9.jar(33015 bytes)
+D:\Non-Backup\workplace\mavenrepo\com\mysema\commons\mysema-commons-lang\0.2.4\mysema-commons-lang-0.2.4.jar(12050 bytes)
+D:\Non-Backup\workplace\mavenrepo\joda-time\joda-time\1.6\joda-time-1.6.jar(534827 bytes)
+D:\Non-Backup\workplace\mavenrepo\javax\inject\javax.inject\1\javax.inject-1.jar(2497 bytes)
+D:\Non-Backup\workplace\mavenrepo\commons-pool\commons-pool\1.5.4\commons-pool-1.5.4.jar(96221 bytes)
+D:\Non-Backup\workplace\mavenrepo\org\springframework\spring-expression\4.0.0.RELEASE\spring-expression-4.0.0.RELEASE.jar(206507 bytes)
+D:\Non-Backup\workplace\workspace\user\user-core\target\classes(2 entries)
+---- Compiler Messages ---
+info directory classpath entry does not exist: C:\Program Files\Java\jdk1.7.0_67\jre\lib\sunrsasign.jar
+info zipfile classpath entry does not exist: C:\Program Files\Java\jdk1.7.0_67\jre\classes
+info Pipelining compilation
+info compiling D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\aspect\SoftenAspect.aj
+info compiling D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\aop\ExceptionHandlerAspect.java
+info weaver operating in reweavable mode.  Need to verify any required types exist.
+info woven aspect com.capgemini.user.aspect.SoftenAspect (from D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\aspect\SoftenAspect.aj)
+info woven aspect com.capgemini.user.logging.aop.ExceptionHandlerAspect (from D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\logging\aop\ExceptionHandlerAspect.java)
+info compiling D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\concurrency\ConcurrencyProcessor.java
+info woven class com.capgemini.user.concurrency.ConcurrencyProcessor (from D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\concurrency\ConcurrencyProcessor.java)
+info compiling D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\concurrency\core\CallableCommand.java
+info woven class com.capgemini.user.concurrency.core.CallableCommand (from D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\concurrency\core\CallableCommand.java)
+info compiling D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\concurrency\core\Command.java
+info woven class com.capgemini.user.concurrency.core.Command (from D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\concurrency\core\Command.java)
+info compiling D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\concurrency\ExecutorConcurrencyProcessor.java
+error at (no source information available)
+D:\Non-Backup\workplace\workspace\user\user-core\src\main\java\com\capgemini\user\concurrency\ExecutorConcurrencyProcessor.java:0::0 Internal compiler error: java.lang.ClassCastException: org.aspectj.org.eclipse.jdt.internal.compiler.lookup.ParameterizedTypeBinding cannot be cast to org.aspectj.org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding at org.aspectj.ajdt.internal.compiler.lookup.EclipseResolvedMember.getTypeDeclaration(EclipseResolvedMember.java:410)
+abort ABORT -- (ClassCastException) org.aspectj.org.eclipse.jdt.internal.compiler.lookup.ParameterizedTypeBinding cannot be cast to org.aspectj.org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding
+org.aspectj.org.eclipse.jdt.internal.compiler.lookup.ParameterizedTypeBinding cannot be cast to org.aspectj.org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding
+java.lang.ClassCastException: org.aspectj.org.eclipse.jdt.internal.compiler.lookup.ParameterizedTypeBinding cannot be cast to org.aspectj.org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding
+	at org.aspectj.ajdt.internal.compiler.lookup.EclipseResolvedMember.getTypeDeclaration(EclipseResolvedMember.java:410)
+	at org.aspectj.ajdt.internal.compiler.lookup.EclipseResolvedMember.isTypeDeclarationAvailable(EclipseResolvedMember.java:399)
+	at org.aspectj.ajdt.internal.compiler.lookup.EclipseResolvedMember.getAnnotationTypes(EclipseResolvedMember.java:202)
+	at org.aspectj.ajdt.internal.compiler.lookup.EclipseResolvedMember.hasAnnotation(EclipseResolvedMember.java:79)
+	at org.aspectj.weaver.JoinPointSignature.hasAnnotation(JoinPointSignature.java:79)
+	at org.aspectj.weaver.patterns.ExactAnnotationTypePattern.matches(ExactAnnotationTypePattern.java:109)
+	at org.aspectj.weaver.patterns.ExactAnnotationTypePattern.matches(ExactAnnotationTypePattern.java:96)
+	at org.aspectj.weaver.patterns.SignaturePattern.matchesAnnotations(SignaturePattern.java:713)
+	at org.aspectj.weaver.patterns.SignaturePattern.matchesExactly(SignaturePattern.java:372)
+	at org.aspectj.weaver.patterns.SignaturePattern.matches(SignaturePattern.java:320)
+	at org.aspectj.weaver.patterns.KindedPointcut.matchInternal(KindedPointcut.java:197)
+	at org.aspectj.weaver.patterns.Pointcut.match(Pointcut.java:137)
+	at org.aspectj.weaver.patterns.NotPointcut.matchInternal(NotPointcut.java:56)
+	at org.aspectj.weaver.patterns.Pointcut.match(Pointcut.java:137)
+	at org.aspectj.weaver.patterns.AndPointcut.matchInternal(AndPointcut.java:60)
+	at org.aspectj.weaver.patterns.Pointcut.match(Pointcut.java:137)
+	at org.aspectj.weaver.patterns.AndPointcut.matchInternal(AndPointcut.java:60)
+	at org.aspectj.weaver.patterns.Pointcut.match(Pointcut.java:137)
+	at org.aspectj.weaver.patterns.AndPointcut.matchInternal(AndPointcut.java:60)
+	at org.aspectj.weaver.patterns.Pointcut.match(Pointcut.java:137)
+	at org.aspectj.ajdt.internal.compiler.problem.AjProblemReporter.unhandledException(AjProblemReporter.java:117)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.flow.FlowContext.checkExceptionHandlers(FlowContext.java:491)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.ast.MessageSend.analyseCode(MessageSend.java:194)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.ast.MessageSend.analyseCode(MessageSend.java:178)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.ast.Block.analyseCode(Block.java:48)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.ast.ForeachStatement.analyseCode(ForeachStatement.java:125)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.analyseCode(MethodDeclaration.java:125)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.internalAnalyseCode(TypeDeclaration.java:766)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.analyseCode(TypeDeclaration.java:262)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.analyseCode(CompilationUnitDeclaration.java:118)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:802)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:480)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:420)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performCompilation(AjBuildManager.java:1036)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performBuild(AjBuildManager.java:272)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.batchBuild(AjBuildManager.java:185)
+	at org.aspectj.ajdt.ajc.AjdtCommand.doCommand(AjdtCommand.java:112)
+	at org.aspectj.ajdt.ajc.AjdtCommand.runCommand(AjdtCommand.java:60)
+	at org.aspectj.tools.ajc.Main.run(Main.java:371)
+	at org.aspectj.tools.ajc.Main.runMain(Main.java:248)
+	at org.codehaus.mojo.aspectj.AbstractAjcCompiler.execute(AbstractAjcCompiler.java:524)
+	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:106)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:208)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:84)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:59)
+	at org.apache.maven.lifecycle.internal.LifecycleStarter.singleThreadedBuild(LifecycleStarter.java:183)
+	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:161)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:318)
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:153)
+	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:555)
+	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:214)
+	at org.apache.maven.cli.MavenCli.main(MavenCli.java:158)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:290)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:230)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:414)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:357)
+

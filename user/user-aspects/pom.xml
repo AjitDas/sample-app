@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>user-aspects</artifactId>
+	<packaging>jar</packaging>
+	<name>User Aspects</name>
+	<url>http://www.capgemini.com</url>
+
+	<parent>
+		<groupId>com.capgemini.test</groupId>
+		<artifactId>user-parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<!-- <dependency> <groupId>org.springframework</groupId> <artifactId>spring-aspects</artifactId> 
+			</dependency> <dependency> <groupId>org.springframework</groupId> <artifactId>spring-tx</artifactId> 
+			</dependency> -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjtools</artifactId>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<finalName>user-aspects</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+				<version>1.7</version>
+				<configuration>
+					<complianceLevel>1.7</complianceLevel>
+					<source>1.7</source>
+					<target>1.7</target>
+					<forceAjcCompile>true</forceAjcCompile>
+					<preserveAllLocals>true</preserveAllLocals>
+					<showWeaveInfo>true</showWeaveInfo>
+					<verbose>true</verbose>
+					<Xlintfile>${basedir}/src/main/resources/ajc.properties</Xlintfile>
+					<includes>
+						<include>**/*.java</include>
+						<!-- <include>**/*.class</include> -->
+						<include>**/*.aj</include>
+					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>compile_with_aspectj</id>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>test-compile_with_aspectj</id>
+						<goals>
+							<goal>test-compile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjrt</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjtools</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+
+	</build>
+
+
+</project>
