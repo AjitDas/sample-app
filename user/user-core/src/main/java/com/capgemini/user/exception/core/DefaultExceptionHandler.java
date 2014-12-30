@@ -42,7 +42,7 @@ public class DefaultExceptionHandler implements ExceptionHandler{
 		String exceptionClassName = throwable.getClass().getName();
 		if(errorMappingProps.containsKey(exceptionClassName)){
 			String errorMappingVal = errorMappingProps.getProperty(exceptionClassName);
-			String[] splittedTokens = errorMappingVal.split("|");
+			String[] splittedTokens = errorMappingVal.split("\\|");
 			if(splittedTokens!=null && splittedTokens.length >= 2){
 				userException.setErrorCode(splittedTokens[0]);
 				userException.setErrorMessage(splittedTokens[1]);

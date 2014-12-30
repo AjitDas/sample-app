@@ -27,7 +27,7 @@ import com.capgemini.user.logging.event.ExceptionReturnLogEvent;
 import com.capgemini.user.service.util.FirstFailExceptionThreadLocalHolder;
 import com.capgemini.user.service.util.UserExceptionThreadLocalHolder;
 
-@Aspect @Order(3) //@Component("exceptionHandlerAspect")
+@Aspect @Order(1) //@Component("exceptionHandlerAspect")
 public class ExceptionHandlerAspect implements ApplicationContextAware {
 
 	private Properties errorMappingProps= new Properties();
@@ -119,7 +119,7 @@ public class ExceptionHandlerAspect implements ApplicationContextAware {
 	
 	private UserException prepareUserException(final JoinPoint joinPoint, final Throwable throwable){
 		UserException userException = null;
-		if(applicationConext!=null){
+		if(applicationConext!=null && customExceptionHandler == null){
 			try{
 				customExceptionHandler = applicationConext.getBean("customExceptionHandler", ExceptionHandler.class);
 			}catch(final Exception exception){

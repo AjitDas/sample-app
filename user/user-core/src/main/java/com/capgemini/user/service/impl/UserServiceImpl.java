@@ -46,6 +46,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override @Transactional(value=TxType.SUPPORTS)
 	public User findUserWithUsername(String username) {
+		// validate and in case of invalid data an exception is thrown after which exception aspect come into picture 
+		miscDummyService.checkUserNameNotNullOrEmpty(username);
+		
 		return userRepository.queryByTheUserName(username);
 	}
 

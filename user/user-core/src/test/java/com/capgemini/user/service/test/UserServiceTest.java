@@ -202,7 +202,7 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void verifyUserExceptionThrown(){
+	public void verifyUserExceptionThrownFromCustomExceptionHandler(){
 		User invalidUser = null;
 		try{
 			userService.findUserWithId(-1L);
@@ -214,6 +214,23 @@ public class UserServiceTest {
 			UserException userException = (UserException)exception;
 			Assert.assertEquals("2001", userException.getErrorCode());
 			Assert.assertEquals("Custom IllegalArgumentException Message", userException.getErrorMessage());
+		}
+		Assert.assertNull(invalidUser);
+	}
+	
+	@Test
+	public void verifyUserExceptionThrownFromDefaultExceptionHandler(){
+		User invalidUser = null;
+		try{
+			userService.findUserWithUsername(null);
+			Assert.fail("Shouldn't come here, UserException should have been thrown above");
+		}catch(Exception exception){
+			if(!(exception instanceof UserException)){
+				Assert.fail("UserException should have been thrown, not other exception expected");
+			}
+			UserException userException = (UserException)exception;
+			Assert.assertEquals("0004", userException.getErrorCode());
+			Assert.assertEquals("Illegal State To Process Further", userException.getErrorMessage());
 		}
 		Assert.assertNull(invalidUser);
 	}

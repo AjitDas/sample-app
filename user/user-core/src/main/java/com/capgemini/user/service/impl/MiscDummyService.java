@@ -20,4 +20,10 @@ public class MiscDummyService {
 	public void greetHelloWithLogAlongWithAudit(){
 		logPublisher.publishLog(new SimpleLogEvent("Hello Service Bean Audit Log", "TRACE"));
 	}
+	
+	public void checkUserNameNotNullOrEmpty(final String userName){
+		if(userName==null || userName.isEmpty()){
+			throw new IllegalStateException(String.format("User name passed can't be NULL or empty",userName));
+		}
+	}
 }

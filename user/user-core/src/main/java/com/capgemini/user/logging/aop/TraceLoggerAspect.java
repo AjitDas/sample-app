@@ -16,16 +16,13 @@ import com.capgemini.user.logging.core.LogPublisher;
 import com.capgemini.user.logging.event.CallLogEvent;
 import com.capgemini.user.logging.event.ReturnLogEvent;
 
-@Aspect @Order(1) @Component("traceLoggerAspect")
+@Aspect @Order(3) @Component("traceLoggerAspect")
 public class TraceLoggerAspect {
 	
 	@Autowired @Qualifier("logPublisher") 
 	private LogPublisher logPublisher;
 	
-	// *Test & Test* are added to exclude the test classes from weaving - due to limitation of java editor 
-	// can be excluded if editor compile is not important and always to build from maven
-	@Pointcut("execution(public * com.capgemini.user..*(..)) && !within(com.capgemini.user.logging..*) && !within(com.capgemini.user.service.util..*) && !within(com.sun.proxy..*Proxy*)"
-			+ " && !within(com.capgemini.user..*Test) && !within(com.capgemini.user..Test*)")
+	@Pointcut("execution(public * com.capgemini.user..*(..)) && !within(com.capgemini.user.logging..*) && !within(com.capgemini.user.service.util..*) && !within(com.sun.proxy..*Proxy*)")
 	public void tracePointcut(){}
 	
 	@PostConstruct
