@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired private UserRepository userRepository;
 	
-	@Autowired private HelloDummy helloDummy;
+	@Autowired private MiscDummyService miscDummyService;
 	
 	@Override @Transactional @Auditable
 	public User createUser(User user) {

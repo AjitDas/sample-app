@@ -14,7 +14,7 @@ public class CustomExceptionHandler implements ExceptionHandler{
 		// do your own custom processing
 		// for example check the throwable type and joinpoint and decide what code and message to return
 		
-		UserException userException = new UserException(throwable.getMessage(), throwable);
+		UserException userException = null;
 		if(throwable.getClass().equals(IllegalArgumentException.class)){
 			userException = new UserException(throwable.getMessage(), throwable);
 			userException.setErrorCode("2001");

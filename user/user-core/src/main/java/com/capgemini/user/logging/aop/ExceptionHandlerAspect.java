@@ -118,6 +118,7 @@ public class ExceptionHandlerAspect implements ApplicationContextAware {
 	}
 	
 	private UserException prepareUserException(final JoinPoint joinPoint, final Throwable throwable){
+		UserException userException = null;
 		if(applicationConext!=null){
 			try{
 				customExceptionHandler = applicationConext.getBean("customExceptionHandler", ExceptionHandler.class);
@@ -126,10 +127,12 @@ public class ExceptionHandlerAspect implements ApplicationContextAware {
 			}
 		}
 		if(customExceptionHandler!=null){
-			return customExceptionHandler.prepareUserException(joinPoint, throwable);
-		}else{
-			return defaultExceptionHandler.prepareUserException(joinPoint, throwable);
+			userException = customExceptionHandler.prepareUserException(joinPoint, throwable);
 		}
+		if(userException == null && defaultExceptionHandler!=null){
+			userException = defaultExceptionHandler.prepareUserException(joinPoint, throwable);
+		}
+		return userException;
 	}
 
 	@Override
