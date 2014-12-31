@@ -9,16 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+//import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.capgemini.user.exception.UserException;
+import com.capgemini.user.exception.core.EnableExceptionHandler;
+import com.capgemini.user.exception.core.ErrorResponse;
+import com.capgemini.user.exception.core.ExceptionHttpStatusMapper;
 
-@Component("responseEntityUserExceptionHandler")
-public class ResponseEntityUserExceptionHandler implements ApplicationContextAware{
+@ControllerAdvice(annotations=EnableExceptionHandler.class)
+//@ControllerAdvice
+public class ResponseEntityUserExceptionHandler implements ApplicationContextAware {
 	
 	private static final HttpStatus defaultHttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 	
@@ -27,11 +31,11 @@ public class ResponseEntityUserExceptionHandler implements ApplicationContextAwa
 	@Autowired @Qualifier("defaultExceptionHttpStatusMapper")
 	private ExceptionHttpStatusMapper defaultExceptionHttpStatusMapper;
 	
-	@Autowired @Lazy @Qualifier("customExceptionHttpStatusMapper")
+	//@Autowired(required=false) @Lazy @Qualifier("customExceptionHttpStatusMapper")
 	private ExceptionHttpStatusMapper customExceptionHttpStatusMapper;
-
-	@ExceptionHandler(value=UserException.class)
-	public final ResponseEntity<ErrorResponse> handleUserException(UserException userException, HttpServletRequest request) {
+	
+	@ExceptionHandler(value={UserException.class})
+	public ResponseEntity<ErrorResponse> handleUserException(UserException userException, HttpServletRequest request) {
 		
 		ErrorResponse errorResponse = new ErrorResponse();
 		HttpStatus httpStatus = defaultHttpStatus;
@@ -76,7 +80,7 @@ public class ResponseEntityUserExceptionHandler implements ApplicationContextAwa
 			errorResponse.setRequestedUrl(reqURI.toString());
 			
 		}finally{
-			
+			// empty
 		}
 		return new ResponseEntity<ErrorResponse>(errorResponse, httpStatus);
 	}

@@ -21,6 +21,7 @@
 	<!--  component scan for autowired of spring beans -->
 	<context:component-scan base-package="com.capgemini.user">
 		<context:exclude-filter type="regex" expression="com\.capgemini\.user\.web\..*" />
+		<context:exclude-filter type="assignable" expression="com.capgemini.user.exception.core.ResponseEntityUserExceptionHandler" />
 		<!-- <context:exclude-filter type="regex" expression="com\.capgemini\.user\.dao\.repositories\..*" />
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository" /> 

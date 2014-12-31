@@ -26,7 +26,7 @@ public class AuditLoggerAspect {
 	@Autowired @Qualifier("logPublisher") 
 	private LogPublisher logPublisher;
 	
-	@Pointcut("execution(@com.capgemini.user.logging.core.Auditable * *(..)) && within(com.capgemini.user..*) && !within(com.capgemini.user.logging..*) && !within(com.sun.proxy..*Proxy*)")
+	@Pointcut("execution(@com.capgemini.user.logging.core.Auditable * *(..)) && within(com.capgemini.user..*) && !within(com.capgemini.user.logging..*) && !within(com.sun.proxy..*Proxy*) && !within(com.sun.proxy..*Proxy*)")
 	public void auditPointcut(){}
 	
 	@PostConstruct

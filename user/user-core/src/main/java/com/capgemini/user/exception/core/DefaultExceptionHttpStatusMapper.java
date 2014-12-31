@@ -28,6 +28,9 @@ public class DefaultExceptionHttpStatusMapper implements ExceptionHttpStatusMapp
 			InputStream stream=null;
 			try {
 				stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(errorHttpStatusMappingPropFile);
+				if(stream == null){
+					stream = DefaultExceptionHttpStatusMapper.class.getClassLoader().getResourceAsStream(errorHttpStatusMappingPropFile);
+				}
 				if (stream != null) {
 					errorHttpStatusMappingProps.load(stream);
 				}

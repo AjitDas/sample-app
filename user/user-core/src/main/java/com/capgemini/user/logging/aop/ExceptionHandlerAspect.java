@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.core.annotation.Order;
 
 import com.capgemini.user.exception.UserException;
@@ -46,7 +45,7 @@ public class ExceptionHandlerAspect implements ApplicationContextAware {
 	@Autowired @Qualifier("defaultExceptionHandler")
 	private ExceptionHandler defaultExceptionHandler;
 	
-	@Autowired @Lazy @Qualifier("customExceptionHandler")
+	//@Autowired @Lazy @Qualifier("customExceptionHandler")
 	private ExceptionHandler customExceptionHandler;
 	
 	@Pointcut("execution(public * com.capgemini.user..*(..) throws !com.capgemini.user.exception.UserException+) && within(com.capgemini.user..*) && !within(com.capgemini.user.logging.aop..*) && !within(com.sun.proxy..*Proxy*)"
