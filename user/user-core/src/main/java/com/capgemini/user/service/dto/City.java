@@ -3,9 +3,9 @@ package com.capgemini.user.service.dto;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
-
-@XmlType(name="city")
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement(name="city")
+//@XmlType(name="city")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class City {
 

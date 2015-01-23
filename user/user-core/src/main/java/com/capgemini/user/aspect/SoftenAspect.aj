@@ -5,6 +5,6 @@ public aspect SoftenAspect {
 	
 	declare soft : IOException+ : softenPointcut();
 	
-	pointcut softenPointcut() : call(* *..*(..) throws IOException+) && within(com.capgemini.user..*);
+	pointcut softenPointcut() : call(* *..*(..) throws IOException+) && within(com.capgemini..*);
 	
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="citiesByCountry")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -14,7 +15,8 @@ public class CitiesByCountry {
 	@XmlElement(name="country")
 	private String country;
 	
-	@XmlElement(name="cities")
+	@XmlElementWrapper(name="cities")
+	@XmlElement(name="city")
 	private List<City> cities;
 	
 	public CitiesByCountry(){}

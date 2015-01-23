@@ -48,8 +48,8 @@ public class ExceptionHandlerAspect implements ApplicationContextAware {
 	//@Autowired @Lazy @Qualifier("customExceptionHandler")
 	private ExceptionHandler customExceptionHandler;
 	
-	@Pointcut("execution(public * com.capgemini.user..*(..) throws !com.capgemini.user.exception.UserException+) && within(com.capgemini.user..*) && !within(com.capgemini.user.logging.aop..*) && !within(com.sun.proxy..*Proxy*)"
-			+ "&& !within(com.capgemini.user..*Test) && !within(com.capgemini.user..Test*)")
+	@Pointcut("execution(public * com.capgemini..*(..) throws !com.capgemini.user.exception.UserException+) && within(com.capgemini..*) && !within(com.capgemini.user.logging.aop..*) && !within(com.sun.proxy..*Proxy*)"
+			+ "&& !within(com.capgemini..*Test) && !within(com.capgemini..Test*)")
 	public void exceptionPointcut(){}
 
 	@PostConstruct

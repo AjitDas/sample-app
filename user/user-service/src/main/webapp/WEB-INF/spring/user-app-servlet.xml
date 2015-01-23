@@ -26,8 +26,12 @@
 	        <bean class="org.springframework.http.converter.ResourceHttpMessageConverter"/>
 	        <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
 	        <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/>
-	        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+	        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+	        	<property name="objectMapper" ref="jacksonObjectMapper"/>
+	        </bean>
     	</mvc:message-converters>
 	</mvc:annotation-driven>
+	
+	<bean id="jacksonObjectMapper" class="com.capgemini.user.web.converter.CustomJsonMapper" />
 	
 </beans>

@@ -22,7 +22,7 @@ public class TraceLoggerAspect {
 	@Autowired @Qualifier("logPublisher") 
 	private LogPublisher logPublisher;
 	
-	@Pointcut("execution(public * com.capgemini.user..*(..)) && !within(com.capgemini.user.logging..*) && !within(com.capgemini.user.service.util..*) && !within(com.sun.proxy..*Proxy*)")
+	@Pointcut("execution(public * com.capgemini..*(..)) && !within(com.capgemini.user.logging..*) && !within(com.capgemini.user.service.util..*) && !within(com.sun.proxy..*Proxy*)")
 	public void tracePointcut(){}
 	
 	@PostConstruct

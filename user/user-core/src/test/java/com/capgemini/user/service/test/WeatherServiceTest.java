@@ -41,7 +41,7 @@ public class WeatherServiceTest {
 		WeatherData weatherData = weatherService.getWeather("India", "Bhubaneswar");
 		Assert.assertNotNull(weatherData);
 		Assert.assertEquals("India", weatherData.getCountry());
-		Assert.assertEquals("Bhubaneswar", weatherData.getCity());
+		Assert.assertEquals("Bhubaneswar", weatherData.getCityWeatherData().getCity());
 		logger.debug("Current Weather Data :"+weatherData);
 	}
 

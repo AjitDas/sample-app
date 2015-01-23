@@ -10,5 +10,5 @@ public aspect UserSoftenAspect{
 	
 	pointcut softenPointcut() : (call (* *..* (..) throws (java.lang.Throwable+ && !java.lang.RuntimeException+ && !java.lang.Error+)) || 
 			call (*.new(..) throws (Throwable+ && !RuntimeException+ && !Error+))) &&  
-			within(com.capgemini.user..*)  /*&& !within(com.capgemini.user.logging.event..*)*/ && !within(@org.aspectj.lang.annotation.Aspect *) && !call(@NotSoften * *(..));
+			within(com.capgemini..*)  && !within(@org.aspectj.lang.annotation.Aspect *) && !call(@NotSoften * *(..));
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.capgemini.user.service.WeatherService;
+import com.capgemini.user.service.dto.AllCitiesWeatherData;
 import com.capgemini.user.service.dto.CitiesByCountry;
 import com.capgemini.user.service.dto.WeatherData;
 
@@ -20,7 +21,7 @@ public class WeatherWebServiceController {
 	@Autowired
 	private WeatherService weatherService;
 
-	@ResponseBody @RequestMapping(value="/cities-by-country/{countryName}", method = RequestMethod.GET, produces="application/json")
+	@ResponseBody @RequestMapping(value="/cities-by-country/{countryName}", method = RequestMethod.GET, produces={"application/json","application/xml"})
 	public ResponseEntity<CitiesByCountry> getCitiesByCountry(@PathVariable("countryName") String countryName, Model model){
 		if(countryName==null || countryName.isEmpty()){
 			return new ResponseEntity<CitiesByCountry>(HttpStatus.BAD_REQUEST);
@@ -29,7 +30,7 @@ public class WeatherWebServiceController {
 		return new ResponseEntity<CitiesByCountry>(citiesByCountry,HttpStatus.OK);
 	}
 	
-	@ResponseBody @RequestMapping(value="/get-current-weather/{countryName}/{cityName}", method = RequestMethod.GET, produces="application/json")
+	@ResponseBody @RequestMapping(value="/get-current-weather/{countryName}/{cityName}", method = RequestMethod.GET, produces={"application/json","application/xml"})
 	public ResponseEntity<WeatherData> getWeatherByCountryAndCity(@PathVariable("countryName") String countryName,
 			@PathVariable("cityName") String cityName, Model model){
 		if(countryName==null || countryName.isEmpty() || cityName==null || cityName.isEmpty()){
@@ -37,5 +38,14 @@ public class WeatherWebServiceController {
 		}
 		WeatherData currentWeatherData = weatherService.getWeather(countryName, cityName);
 		return new ResponseEntity<WeatherData>(currentWeatherData,HttpStatus.OK);
+	}
+	
+	@ResponseBody @RequestMapping(value="/get-all-cities-current-weather/{countryName}", method = RequestMethod.GET, produces={"application/json","application/xml"})
+	public ResponseEntity<AllCitiesWeatherData> getWeatherByCountryAndCity(@PathVariable("countryName") String countryName, Model model){
+		if(countryName==null || countryName.isEmpty()){
+			return new ResponseEntity<AllCitiesWeatherData>(HttpStatus.BAD_REQUEST);
+		}
+		AllCitiesWeatherData allCitiesWeatherData = weatherService.getAllCitiesWeather(countryName);
+		return new ResponseEntity<AllCitiesWeatherData>(allCitiesWeatherData,HttpStatus.OK);
 	}
 }

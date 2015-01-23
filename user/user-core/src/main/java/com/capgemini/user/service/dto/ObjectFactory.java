@@ -7,14 +7,22 @@ public class ObjectFactory {
 
 	public ObjectFactory(){}
 
+	public AllCitiesWeatherData createAllCitiesWeatherData(){
+		return new AllCitiesWeatherData();
+	}
+	
 	public CitiesByCountry createCitiesByCountry(){
 		return new CitiesByCountry();
 	}
-
+	
 	public City createCity(){
 		return new City();
 	}
 
+	public CityWeatherData createCityWeatherData(){
+		return new CityWeatherData();
+	}
+	
 	public User createUser(){
 		return new User();
 	}
@@ -22,5 +30,4 @@ public class ObjectFactory {
 	public WeatherData createWeatherData(){
 		return new WeatherData();
 	}
-
 }

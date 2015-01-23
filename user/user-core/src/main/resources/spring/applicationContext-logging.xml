@@ -8,15 +8,6 @@
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	<!-- annotation support -->
-	<!-- <context:annotation-config /> -->
- 
- 	<!-- load properties file for externalization -->
-	<context:property-placeholder location="classpath:,classpath:user-app-${ENV_NAME}.properties" ignore-unresolvable="true"/>
-	
-	<!--  component scan for autowired of spring beans : TO BE USED ONLY TO SPECIFIC PACKAGE WHICH CONTAINS LOGGING BEANS NOTHING ELSE -->
-	<!-- <context:component-scan base-package="com.capgemini.user.logging.core" /> -->
-	
 	<bean id="syncLogPublisher" class="com.capgemini.user.logging.core.SyncLogPublisher">
 		<property name="logEventStringConverter" ref="logEventStringConverter"/>
 		<property name="userLogger" ref="userLogger"/>

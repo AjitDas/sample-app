@@ -1,5 +1,6 @@
 package com.capgemini.user.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +8,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
+import com.capgemini.user.concurrency.ConcurrencyProcessor;
 import com.capgemini.user.service.WeatherService;
+import com.capgemini.user.service.dto.AllCitiesWeatherData;
 import com.capgemini.user.service.dto.CitiesByCountry;
 import com.capgemini.user.service.dto.City;
+import com.capgemini.user.service.dto.CityWeatherData;
 import com.capgemini.user.service.dto.WeatherData;
 import com.capgemini.user.service.dto.weather.CitiesByCountryRequest;
 import com.capgemini.user.service.dto.weather.CitiesByCountryResponse;
@@ -22,6 +26,9 @@ public class WeatherServiceImpl implements WeatherService{
 	
 	@Autowired @Qualifier("globalWebServiceTemplate")
 	private WebServiceTemplate globalWeatherService;
+	
+	@Autowired
+	private ConcurrencyProcessor concurrencyProcessor;
 
 	@Override
 	public CitiesByCountry getCitiesByCountry(String countryName) {
@@ -63,20 +70,52 @@ public class WeatherServiceImpl implements WeatherService{
 		WeatherData weatherData = new WeatherData();
 		if(weatherResponse!=null){
 			weatherData.setCountry(countryName);
-			weatherData.setCity(cityName);
+			CityWeatherData cityWeatherData = new CityWeatherData();
+			cityWeatherData.setCity(cityName);
 			if(weatherResponse.getWeatherCurrentData()!=null){
-				weatherData.setLocation(weatherResponse.getWeatherCurrentData().getLocation());
-				weatherData.setTimeRecorded(weatherResponse.getWeatherCurrentData().getTimeRecorded());
-				weatherData.setTemprature(weatherResponse.getWeatherCurrentData().getTemprature());
-				weatherData.setHumidity(weatherResponse.getWeatherCurrentData().getHumidity());
-				weatherData.setWindSpeed(weatherResponse.getWeatherCurrentData().getWindSpeed());
-				weatherData.setVisibility(weatherResponse.getWeatherCurrentData().getVisibility());
-				weatherData.setPressure(weatherResponse.getWeatherCurrentData().getPressure());
-				weatherData.setDewPoint(weatherResponse.getWeatherCurrentData().getDewPoint());
+				cityWeatherData.setLocation(weatherResponse.getWeatherCurrentData().getLocation());
+				cityWeatherData.setTimeRecorded(weatherResponse.getWeatherCurrentData().getTimeRecorded());
+				cityWeatherData.setTemprature(weatherResponse.getWeatherCurrentData().getTemprature());
+				cityWeatherData.setHumidity(weatherResponse.getWeatherCurrentData().getHumidity());
+				cityWeatherData.setWindSpeed(weatherResponse.getWeatherCurrentData().getWindSpeed());
+				cityWeatherData.setVisibility(weatherResponse.getWeatherCurrentData().getVisibility());
+				cityWeatherData.setPressure(weatherResponse.getWeatherCurrentData().getPressure());
+				cityWeatherData.setDewPoint(weatherResponse.getWeatherCurrentData().getDewPoint());
 				weatherData.setStatus(weatherResponse.getWeatherCurrentData().getStatus());
 			}
+			weatherData.setCityWeatherData(cityWeatherData);
 		}
 		return weatherData;
+	}
+
+	@Override
+	public AllCitiesWeatherData getAllCitiesWeather(String countryName) {
+		if(countryName==null || countryName.trim().equals("")){
+			throw new IllegalArgumentException("Argument countryName can't be either NULL or empty");
+		}
+		AllCitiesWeatherData allCitiesWeatherData = new AllCitiesWeatherData();
+		CitiesByCountryRequest request = new CitiesByCountryRequest();
+		request.setCountryName(countryName);
+		CitiesByCountryResponse responseWs = (CitiesByCountryResponse)globalWeatherService.marshalSendAndReceive(request);
+		List<CityWeatherDataRetrieverCommand> commandsToExecute = new ArrayList<>();
+		if(responseWs!=null){
+			List<CitiesByCountryData> cities = responseWs.getCitiesByCountryResult().getCountryCityData();
+			if(cities!=null && !cities.isEmpty()){
+				allCitiesWeatherData.setCountry(cities.get(0).getCountry());
+				for(CitiesByCountryData city:cities){
+					WeatherRequest weatherRequest = new WeatherRequest();
+					weatherRequest.setCountryName(city.getCountry());
+					weatherRequest.setCityName(city.getCity());
+					commandsToExecute.add(new CityWeatherDataRetrieverCommand(globalWeatherService, weatherRequest));
+				}
+			}
+		}
+		
+		List<CityWeatherData> citiesWeatherData = concurrencyProcessor.processAndWaitForComplete(commandsToExecute);
+		for(CityWeatherData cityWeatherData:citiesWeatherData){
+			allCitiesWeatherData.getCitiesWeatherData().add(cityWeatherData);
+		}
+		return allCitiesWeatherData;
 	}
 
 }
