@@ -129,6 +129,11 @@
 	        </bean>
    	 	</property>
         <property name="defaultUri" value="${global.weather.service.url}"/>
+        <property name="interceptors">
+        	<list>
+        		<ref bean="clientInOutboundLogInterceptor"/>
+        	</list>
+        </property>
     </bean>
     
     
