@@ -25,7 +25,7 @@ public class GreetServiceImpl implements GreetService {
 	public GreetMessage greet(String greetMessageStr) throws GreetCheckedException{
 		throwCheckedException(greetMessageStr);
 		GreetMessage greetMessage = new GreetMessage();
-		greetMessage.setGreetMessage("Hello Welcome To Spring MVC World "+ greetMessageStr);
+		greetMessage.setGreetMessage("Hello Welcome To Spring MVC World, Message For You "+ greetMessageStr);
 		greetMessage.setGreetTime(Calendar.getInstance().getTime());
 		return greetMessage;
 	}

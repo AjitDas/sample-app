@@ -62,7 +62,7 @@
 					<target>1.7</target>
 			  </configuration>
 			</plugin>
-			<plugin>
+			<!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.5</version>
@@ -80,32 +80,19 @@
                 <version>1.4.4</version>
                 <executions>
                     <execution>
-                        <!-- <configuration>
-                            <onejarVersion>0.97</onejarVersion>
-                            <binlibs>
-                                <fileSet>
-                                    <directory>${project.build.directory}/dllextract</directory>
-                                    <includes>
-                                        <include>test.dll</include>
-                                    </includes>
-                                </fileSet>
-                            </binlibs>
-                            <attachToBuild>true</attachToBuild>
-                            <classifier>onejar</classifier>
-                        </configuration> -->
                         <goals>
                             <goal>one-jar</goal>
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
 		</plugins>
 	</build>
 
-	<pluginRepositories>
+	<!-- <pluginRepositories>
         <pluginRepository>
             <id>onejar-maven-plugin.googlecode.com</id>
             <url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
         </pluginRepository>
-    </pluginRepositories>
+    </pluginRepositories> -->
 </project>
