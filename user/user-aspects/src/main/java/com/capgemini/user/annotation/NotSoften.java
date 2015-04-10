@@ -11,5 +11,5 @@ import java.lang.annotation.Target;
 @Inherited
 public @interface NotSoften {
 
-	// marker interface for allowing audit logs
+	// marker interface for allowing caller to receive the exception
 }

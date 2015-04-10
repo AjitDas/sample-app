@@ -27,7 +27,8 @@ public class ExecutorConcurrencyProcessor implements ConcurrencyProcessor {
 	
 	@Override
 	public <T extends Command<P>, P> List<P> processAndWaitForComplete(List<T> workList) {
-		return processAndWaitForComplete(workList, Integer.valueOf(defaultMaxWait));
+		long timeOut = Long.valueOf(defaultMaxWait);
+		return processAndWaitForComplete(workList, timeOut);
 	}
 
 	@Override

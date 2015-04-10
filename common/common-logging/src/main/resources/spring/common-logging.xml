@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+	<context:annotation-config />
+	
+ 	<!-- <context:component-scan base-package="com.ajit.common.logging">
+	</context:component-scan> -->
+	
+	<bean  id="commonLoggingPlaceHolder" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <property name="ignoreUnresolvablePlaceholders" value="true"/>
+	    <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+	    <property name="searchSystemEnvironment" value="true"/>
+	    <property name="locations">
+	        <list>
+	            <value>classpath:common-logging.properties</value>
+	        </list>
+	    </property>
+	</bean>
+	
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	
+	<bean id="syncLogPublisher" class="com.ajit.common.logging.core.SyncLogPublisher">
+		<property name="logEventStringConverter" ref="logEventStringConverter"/>
+		<property name="commonLogger" ref="commonLogger"/>
+	</bean>
+	
+	<bean id="logEventStringConverter" class="com.ajit.common.logging.core.DefaultLogEventStringConverter"/>
+
+	<bean id="commonLogger" class="com.ajit.common.logging.core.Slf4jCommonLogger"/>
+	
+	<bean id="auditLoggerAspect" class="com.ajit.common.logging.aop.AuditLoggerAspect" factory-method="aspectOf"/>
+	
+	<bean id="traceLoggerAspect" class="com.ajit.common.logging.aop.TraceLoggerAspect" factory-method="aspectOf"/>
+	
+</beans>

@@ -58,9 +58,9 @@
 				<artifactId>aspectj-maven-plugin</artifactId>
 				<version>1.7</version>
 				<configuration>
-					<complianceLevel>1.7</complianceLevel>
-					<source>1.7</source>
-					<target>1.7</target>
+					<complianceLevel>1.8</complianceLevel>
+					<source>1.8</source>
+					<target>1.8</target>
 					<forceAjcCompile>true</forceAjcCompile>
 					<showWeaveInfo>true</showWeaveInfo>
 					<verbose>true</verbose>

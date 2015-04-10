@@ -130,7 +130,7 @@ public class UserRepositoriesTest {
 		Assert.assertEquals("Ajit1", foundUserByFirstNameAndLastName.getFirstname());
 		Assert.assertEquals("Das1", foundUserByFirstNameAndLastName.getLastname());
 		
-		User foundUserByUserName = userRepository.queryByTheUserName("ajidas");
+		User foundUserByUserName = userRepository.searchByUserName("ajidas");
 		Assert.assertEquals(3L, foundUserByUserName.getId().longValue());
 		Assert.assertEquals("ajidas", foundUserByUserName.getUsername());
 		Assert.assertEquals("Ajit1", foundUserByUserName.getFirstname());

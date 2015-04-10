@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+	<alias name="syncLogPublisher" alias="logPublisher"/>
+		
+	<import resource="classpath:/spring/common-logging.xml"/>
+	
+	<alias name="syncLogPublisher" alias="logPublisher"/>
+	
+	<bean id="userService" class="com.ajit.common.test.beans.InMemoryUserServiceImpl" />
+	
+	<!-- included for beans defined in only in test package -->
+	<!-- <context:component-scan base-package="com.ajit.common.test.beans" /> -->
+	
+	<!-- define Unit test specific beans that are or will be required or if anything to be overridden from the common beans -->
+	
+	<!-- <aop:config>
+		<aop:aspect ref="auditLoggerAspect">
+			<aop:around method="auditLog" pointcut="execution(@com.ajit.common.logging.core.Auditable * *(..)) and within(com.ajit..*) and !within(com.ajit.common.logging.aop..*) and !within(com.sun.proxy..*Proxy*)" />
+		</aop:aspect>
+	</aop:config>
+	
+	<aop:config>
+		<aop:aspect ref="traceLoggerAspect">
+			<aop:around method="traceLog" pointcut="execution(public * com.ajit..*(..)) and& !within(com.ajit.common.logging.aop..*) and !within(com.sun.proxy..*Proxy*)" />
+		</aop:aspect>
+	</aop:config> -->
+	
+</beans>

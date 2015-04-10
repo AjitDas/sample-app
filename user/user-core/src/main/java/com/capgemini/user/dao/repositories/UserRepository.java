@@ -18,7 +18,8 @@ public interface UserRepository extends JpaRepository<User, Long>, UserRepositor
 	 * @param username
 	 * @return
 	 */
-	User queryByTheUserName(String username);
+	@Query(name="User.queryByTheUserName")
+	User searchByUserName(String username);
 
 	/**
 	 * Find all users with the given lastname. This method will be translated into a query by constructing it directly

@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 		// validate and in case of invalid data an exception is thrown after which exception aspect come into picture 
 		miscDummyService.checkUserNameNotNullOrEmpty(username);
 		
-		return userRepository.queryByTheUserName(username);
+		return userRepository.searchByUserName(username);
 	}
 
 	@Override @Transactional(value=TxType.SUPPORTS)
