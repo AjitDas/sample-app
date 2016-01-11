@@ -20,7 +20,7 @@
 	</appender>
 
 	<logger name="org.springframework.data" level="debug" />
-	<logger name="org.hibernate.tool.hbm2ddl" level="trace" />
+	<!-- <logger name="org.hibernate.tool.hbm2ddl" level="trace" /> -->
 	<logger name="com.oreilly.springdata" level="debug" />
 	<logger name="com.capgemini.user" level="debug" />
 	<logger name="com.capgemini.user.logging.core.Slf4jUserLogger" level="trace" />

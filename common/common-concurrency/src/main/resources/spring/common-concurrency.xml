@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+	<context:annotation-config />
+		
+	<import resource="classpath:/spring/common-logging.xml"/>
+	<import resource="classpath:/spring/common-exceptionhandling.xml"/>
+	
+	<bean  id="commonExceptionHandlingPlaceHolder" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <property name="ignoreUnresolvablePlaceholders" value="true"/>
+	    <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+	    <property name="searchSystemEnvironment" value="true"/>
+	    <property name="locations">
+	        <list>
+	            <value>classpath:common-concurrency.properties</value>
+	        </list>
+	    </property>
+	</bean>
+	
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	
+	<bean id="executorConcurrencyProcessor" class="com.ajit.common.concurrency.core.ExecutorConcurrencyProcessor"/>
+	
+	<bean id="threadPoolExecutorService" class="com.ajit.common.concurrency.core.ThreadPoolExecutorService"/>
+	
+	<bean id="executorService" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+	    <property name="corePoolSize" value="${concurrency.default.min.poolsize:1}" />
+	    <property name="maxPoolSize" value="${concurrency.default.max.poolsize:5}" />
+	    <property name="queueCapacity" value="${concurrency.default.max.queuedTask:100000}" />
+	</bean>
+	
+	
+</beans>

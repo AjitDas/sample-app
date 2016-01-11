@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<!-- <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator"> 
+		<resetJUL>true</resetJUL> </contextListener> -->
+
+	<!-- <appender name="console" class="ch.qos.logback.core.ConsoleAppender"> 
+			<encoder> 
+				<pattern>%d %5p %40.40c:%4L - %m%n</pattern> 
+			</encoder> 
+		</appender> -->
+
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d [%thread] %-5level %logger{90} - %msg %n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>TRACE</level>
+		</filter>
+	</appender>
+
+	<logger name="org.springframework" level="debug" />
+	<logger name="com.ajit.common.concurrency" level="debug" />
+	<logger name="com.ajit.common.logging.core.Slf4jCommonLogger" level="trace" />
+
+	<root level="error">
+		<appender-ref ref="consoleAppender" />
+	</root>
+
+</configuration>

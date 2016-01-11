@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<!-- <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator"> 
+		<resetJUL>true</resetJUL> </contextListener> -->
+
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d [%thread] %-5level %logger{90} - %msg %n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>TRACE</level>
+		</filter>
+	</appender>
+	
+	<appender name="userAppDailyRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${CATALINA_BASE}/logs/greet-ws.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover file name pattern -->
+			<fileNamePattern>greet-ws.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<!-- keep 30 days' worth of history -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d [%thread] %-5level %logger{90} - %msg %n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="traceDailyRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${CATALINA_BASE}/logs/greet-ws_trace.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>greet-ws_trace.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>3</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d [%thread] %-5level %logger{90} - %msg %n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="org.springframework.data" level="debug" />
+	<logger name="org.hibernate.tool.hbm2ddl" level="trace" />
+	<logger name="com.oreilly.springdata" level="debug" />
+	
+	<logger name="com.capgemini.greet" level="debug">
+		<appender-ref ref="userAppDailyRollingFileAppender" />
+	</logger>
+	
+	<logger name="com.capgemini.user.logging.core.Slf4jUserLogger" level="trace">
+		<appender-ref ref="traceDailyRollingFileAppender" />
+	</logger>
+
+	<root level="error">
+		<appender-ref ref="consoleAppender" />
+	</root>
+
+</configuration>

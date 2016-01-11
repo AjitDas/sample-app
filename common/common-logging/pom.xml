@@ -90,12 +90,15 @@
 					<outxml>true</outxml> -->
 					<includes>
 						<include>**/*.java</include>
-						<include>**/*.class</include>
+						<!-- <include>**/*.class</include> -->
 						<include>**/com/ajit/common/aspects/SoftenAspect.aj</include>
+						<include>**/com/ajit/common/aspects/IOExceptionSoftenAspect.aj</include>
 					</includes>
 					<!-- <excludes>
 						<exclude>**/com/ajit/common/logging/aop/TraceLoggerAspect.java</exclude>
+						<exclude>**/com/ajit/common/logging/aop/TraceLoggerAspect.class</exclude>
 						<exclude>**/com/ajit/common/logging/aop/AuditLoggerAspect.java</exclude>
+						<exclude>**/com/ajit/common/logging/aop/AuditLoggerAspect.class</exclude>
 					</excludes> -->
 					<aspectLibraries>
 						<aspectLibrary>
@@ -142,21 +145,21 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			<plugin>
+			<!-- <plugin>
 		      <groupId>org.apache.maven.plugins</groupId>
 		      <artifactId>maven-surefire-plugin</artifactId>
 		      <version>2.18.1</version>
 		      <configuration>
-		        <!-- <argLine>-XX:-UseSplitVerifier</argLine>
+		        <argLine>-XX:-UseSplitVerifier</argLine>
 		        <argLine>-javaagent:${M2_REPO}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar</argLine>
 		         <systemProperties>
 		            <property>
 		                <name>aj.weaving.verbose</name>
 		                <value>true</value>
 		            </property>
-		        </systemProperties> -->
+		        </systemProperties>
 		      </configuration>
-		    </plugin>
+		    </plugin> -->
 		</plugins>
 	</build>
 

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+	<display-name>Sample WS With Spring APIs</display-name>
+	
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	
+	<!--  this context define all the beans that are shared by every Servlet, common beans should go here -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/greet-ws-appContext.xml</param-value>
+	</context-param>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- Individual Servlet  should have it's own context, by default DispatcherServlet searches for file {SERLVLET_NAME}-servlet.xml  in classpath. Servlet specific beans should go here -->
+	<servlet>
+		<servlet-name>greet-ws</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/greet-ws-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>greet-ws</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- ThreadLocal clear filter -->
+	<filter>
+		<description>Filter which clears the ThreadLocal for reuse</description>
+        <filter-name>clearThreadLocalFilter</filter-name>
+        <filter-class>com.capgemini.user.web.filter.ClearThreadLocalFilter</filter-class>
+    </filter>
+	<filter-mapping>
+		<filter-name>clearThreadLocalFilter</filter-name>
+		<servlet-name>greet-ws</servlet-name>
+	</filter-mapping>
+	
+	<!-- metadata header filter -->
+	<filter>
+		<description>Filter which propagate metadata HTTP headers between request &amp; response</description>
+        <filter-name>metadataHeaderFilter</filter-name>
+        <filter-class>com.capgemini.user.web.filter.MetadataHeaderFilter</filter-class>
+        <init-param>
+        	<description>All the metadata headers that need to be propagated across HTTP boundary</description>
+        	<param-name>metadataHeaderNames</param-name>
+        	<param-value>X-Correlation-Id;X-Message-Id;X-System-Id</param-value>
+        </init-param>
+        <init-param>
+        	<description>All NON EMPTY metadata headers, in case of missing it will generate UUID</description>
+        	<param-name>nonEmptyMetadataHeaderNames</param-name>
+        	<param-value>X-Correlation-Id;X-Message-Id</param-value>
+        </init-param>
+    </filter>
+	<filter-mapping>
+		<filter-name>metadataHeaderFilter</filter-name>
+		<servlet-name>greet-ws</servlet-name>
+	</filter-mapping>
+	
+	<!-- Adds a ETag to each response by generating a MD5 with the content of the page processed, it doesn't remove any processing but removes bandwidth of user sends a 'If-None-Match' with the ETag sent to it previously -->
+	<filter>
+		<description>Filter which add ETag HTTP header to response by doing MD5 on response content</description>
+		<filter-name>EtagFilter</filter-name>
+		<filter-class>org.springframework.web.filter.ShallowEtagHeaderFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>EtagFilter</filter-name>
+		<servlet-name>greet-ws</servlet-name>
+	</filter-mapping>
+	
+	<!-- boundary logging filter -->
+	<filter>
+		<description>Filter which logs HTTP request &amp; response</description>
+        <filter-name>boundaryLoggingFilter</filter-name>
+        <!-- <filter-class>com.capgemini.user.web.filter.BoundaryLoggingFilter</filter-class> -->
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param>
+			<description>overriden config to allow servlet container to manage the filter lifecycle methods (init and destroy) by default spring manages the lifecycle method invocations (init and destroy)</description>
+			<param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<description>Flag to enable boundary logging or not</description>
+			<param-name>enableBoundayTrace</param-name>
+			<param-value>true</param-value>
+		</init-param>
+    </filter>
+	<filter-mapping>
+		<filter-name>boundaryLoggingFilter</filter-name>
+		<servlet-name>greet-ws</servlet-name>
+	</filter-mapping>
+	
+</web-app>

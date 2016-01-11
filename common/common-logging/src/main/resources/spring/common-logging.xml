@@ -27,8 +27,8 @@
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	
 	<bean id="syncLogPublisher" class="com.ajit.common.logging.core.SyncLogPublisher">
-		<property name="logEventStringConverter" ref="logEventStringConverter"/>
-		<property name="commonLogger" ref="commonLogger"/>
+		<!-- <property name="logEventStringConverter" ref="logEventStringConverter"/>
+		<property name="commonLogger" ref="commonLogger"/> -->
 	</bean>
 	
 	<bean id="logEventStringConverter" class="com.ajit.common.logging.core.DefaultLogEventStringConverter"/>
